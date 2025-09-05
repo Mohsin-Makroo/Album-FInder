@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --dark-bg: #121212;
+  --off-white: #e0e0e0;
+  --spotify-green: #1DB954;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--off-white);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15vh;
+}
+.album-content {
+  position: relative; /* Keeps it in the document flow */
+  z-index: 10;      /* Ensures it's above the background animation */
+  padding: 2rem 4rem; /* Adds nice spacing around the grid */
+}
+
+
+h1 {
+  font-size: 3rem;
+  color: var(--off-white);
+  margin-bottom: 2rem;
+}
+
+input {
+  background-color: #2a2a2a;
+  border: 2px solid #444;
+  color: var(--off-white);
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  width: 500px;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--spotify-green);
+  box-shadow: 0 0 25px rgba(29, 185, 84, 0.6);
+}
+
+.note-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-note {
+  position: absolute;
+  bottom: -100px;
+  opacity: 0.1;
+  animation: floatUp 25s infinite linear;
+  user-select: none;
+  z-index: 5;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-110vh);
+  }
+}
+/* --- ADD this code to the bottom of your app.css file --- */
+
+/* This selector targets the first <div> inside of your .album-content container.
+  This is the div where you applied the Tailwind grid classes.
+*/
+.album-content > div {
+  display: grid;
+  gap: 1.5rem; /* Corresponds to Tailwind's gap-6 */
+  margin-top: 2rem; /* Corresponds to Tailwind's mt-8 */
+
+  /* Mobile-first default: 1 column */
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+/* sm: breakpoint (640px) for 2 columns */
+@media (min-width: 640px) {
+  .album-content > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* md: breakpoint (768px) for 3 columns */
+@media (min-width: 768px) {
+  .album-content > div {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* lg: breakpoint (1024px) for 4 columns */
+@media (min-width: 1024px) {
+  .album-content > div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+
