@@ -1,5 +1,6 @@
 export const searchAlbums = async (searchTerm) => {
   // Change the port number here to match your backend
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
   const backendUrl = `http://localhost:3001/api/search-albums?q=${encodeURIComponent(searchTerm)}`;
 
   try {
