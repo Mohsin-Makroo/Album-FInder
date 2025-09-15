@@ -1,8 +1,7 @@
 export const searchAlbums = async (searchTerm) => {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
   
   // The fix is here: we just use the baseUrl directly now
-const backendUrl = `${baseUrl}/api/search-albums?q=${encodeURIComponent(searchTerm)}`;
+const backendUrl = `/api/search-albums?q=${encodeURIComponent(searchTerm)}`;
 
   try {
     const response = await fetch(backendUrl);
